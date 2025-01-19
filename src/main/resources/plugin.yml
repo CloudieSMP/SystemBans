@@ -1,0 +1,6 @@
+name: SystemBans
+version: ${version}
+main: moe.sebiann.system.SystemBans
+api-version: '1.21.4'
+authors: [ Sebastian, Beauver ]
+website: sebiann.moe
