@@ -3,6 +3,7 @@ package moe.sebiann.system.Objects;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import moe.sebiann.system.Enums.Severity;
+import moe.sebiann.system.Enums.WarningCategory;
 import moe.sebiann.system.SystemBans;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -32,78 +33,85 @@ public class Warning {
     transient OfflinePlayer warner;
 
     UUID playerUUID;
+    String reason;
     UUID warnerUUID;
     Severity severity;
-    String reason;
+    WarningCategory category;
     float warningCreatedUnixTime;
 
     //<editor-fold desc="Constructors">
-    public Warning(OfflinePlayer player, OfflinePlayer warner, Severity severity, String reason, float warningCreatedUnixTime) {
+    public Warning(OfflinePlayer player, OfflinePlayer warner, Severity severity, WarningCategory category, String reason, float warningCreatedUnixTime) {
         this.player = player;
         this.warner = warner;
         this.playerUUID = player.getUniqueId();
         this.warnerUUID = warner.getUniqueId();
         this.severity = severity;
+        this.category = category;
         this.reason = reason;
         this.warningCreatedUnixTime = warningCreatedUnixTime;
 
         path = Path.of(SystemBans.instance.getDataFolder() + "/warnings/" + playerUUID + ".json");
     }
 
-    public Warning(Player player, Player warner, Severity severity, String reason, float warningCreatedUnixTime) {
+    public Warning(Player player, Player warner, Severity severity, WarningCategory category, String reason, float warningCreatedUnixTime) {
         this.player = player;
         this.warner = warner;
         this.playerUUID = player.getUniqueId();
         this.warnerUUID = warner.getUniqueId();
         this.severity = severity;
+        this.category = category;
         this.reason = reason;
         this.warningCreatedUnixTime = warningCreatedUnixTime;
 
         path = Path.of(SystemBans.instance.getDataFolder() + "/warnings/" + playerUUID + ".json");
     }
 
-    public Warning(OfflinePlayer player, OfflinePlayer warner, Severity severity, String reason) {
+    public Warning(OfflinePlayer player, OfflinePlayer warner, Severity severity, WarningCategory category, String reason) {
         this.player = player;
         this.warner = warner;
         this.playerUUID = player.getUniqueId();
         this.warnerUUID = warner.getUniqueId();
         this.severity = severity;
+        this.category = category;
         this.reason = reason;
         this.warningCreatedUnixTime = System.currentTimeMillis();
 
         path = Path.of(SystemBans.instance.getDataFolder() + "/warnings/" + playerUUID + ".json");
     }
 
-    public Warning(Player player, Player warner, Severity severity, String reason) {
+    public Warning(Player player, Player warner, Severity severity, WarningCategory category, String reason) {
         this.player = player;
         this.warner = warner;
         this.playerUUID = player.getUniqueId();
         this.warnerUUID = warner.getUniqueId();
         this.severity = severity;
+        this.category = category;
         this.reason = reason;
         this.warningCreatedUnixTime = System.currentTimeMillis();
 
         path = Path.of(SystemBans.instance.getDataFolder() + "/warnings/" + playerUUID + ".json");
     }
 
-    public Warning(UUID player, UUID warner, Severity severity, String reason, float warningCreatedUnixTime) {
+    public Warning(UUID player, UUID warner, Severity severity, WarningCategory category, String reason, float warningCreatedUnixTime) {
         this.player = Bukkit.getOfflinePlayer(player);
         this.warner = Bukkit.getOfflinePlayer(warner);
         this.playerUUID = player;
         this.warnerUUID = warner;
         this.severity = severity;
+        this.category = category;
         this.reason = reason;
         this.warningCreatedUnixTime = warningCreatedUnixTime;
 
         path = Path.of(SystemBans.instance.getDataFolder() + "/warnings/" + playerUUID + ".json");
     }
 
-    public Warning(UUID player, UUID warner, Severity severity, String reason) {
+    public Warning(UUID player, UUID warner, Severity severity, WarningCategory category, String reason) {
         this.player = Bukkit.getOfflinePlayer(player);
         this.warner = Bukkit.getOfflinePlayer(warner);
         this.playerUUID = player;
         this.warnerUUID = warner;
         this.severity = severity;
+        this.category = category;
         this.reason = reason;
         this.warningCreatedUnixTime = System.currentTimeMillis();
 
